@@ -30,3 +30,4 @@
        (setq show-paren-style 'expression)
        (set-face-attribute 'show-paren-match nil
                            :background "#000000"))
+; something else
