@@ -22,3 +22,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+
+;Highlight the stuff inside a set of brackets
+(progn (show-paren-mode 1)
+       (setq show-paren-style 'expression)
+       (set-face-attribute 'show-paren-match nil
+                           :background "#000000"))

@@ -55,9 +55,9 @@
       initial-scratch-message nil
       initial-major-mode 'org-mode)
 
-(scroll-bar-mode -1)
+;; (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 (delete-selection-mode t)
 (transient-mark-mode t)
@@ -369,12 +369,31 @@
 
 (load-theme 'wombat t)
 (when window-system
-  (set-default-font "Inconsolata")
-  (set-face-attribute 'default nil :height 160))
+  (set-default-font "Ubuntu Mono-10")
+  ;(set-face-attribute 'default nil :height 160)
 
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
+  (require 'ansi-color)
+  (defun colorize-compilation-buffer ()
+    (toggle-read-only)
+    (ansi-color-apply-on-region (point-min) (point-max))
+    (toggle-read-only)))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+;; Change the cursor
+(setq-default cursor-type 'bar)
+
+;; Show line numbers
+(global-linum-mode t)
+
+;;Make a column line
+(add-to-list 'load-path "~/.emacs.d/fill-column-indicator-1.83")
+(require 'fill-column-indicator)
+(define-globalized-minor-mode
+  global-fci-mode fci-mode (lambda() (fci-mode 1)))
+(global-fci-mode t)
+
+;Highlight the stuff inside a set of brackets
+(progn (show-paren-mode 1)
+       (setq show-paren-style 'expression)
+       (set-face-attribute 'show-paren-match nil
+                           :background "#000000"))
