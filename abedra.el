@@ -1,5 +1,6 @@
-(setq user-full-name "Aaron Bedra")
-(setq user-mail-address "aaron@aaronbedra.com")
+;; Modified from Aaron Bedra
+(setq user-full-name "Roy Emanuel")
+(setq user-mail-address "roy.emanuel@gmail.com")
 
 (setenv "PATH" (concat "/usr/local/bin:/opt/local/bin:/usr/bin:/bin" (getenv "PATH")))
 (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -7,8 +8,11 @@
 
 (load "package")
 (package-initialize)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")))
+;; (add-to-list 'package-archives
+;; 	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
-	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 
 (defvar abedra/packages '(ac-slime
 			  auto-complete
@@ -81,6 +85,12 @@
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-c C-k") 'compile)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "M-g")     'goto-line)
+;; Remove
+(global-unset-key [insert])           ; get rid of overwrite
+(global-unset-key (kbd "C-z"))        ; get rid of suspend-frame (still C-x C-z)
+(global-unset-key (kbd "s-^"))        ; get rid of kill-some-buffers, I
+
 
 (setq echo-keystrokes 0.1
       use-dialog-box nil
@@ -94,6 +104,10 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
+
+(add-to-list 'load-path "c:/emacs26/.emacs.d/elpa/julia-emacs")
+(require 'julia-mode)
+
 (setq org-log-done t
       org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE"))
       org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
@@ -103,6 +117,15 @@
 (add-hook 'org-mode-hook
 	  (lambda ()
 	    (writegood-mode)))
+
+;; Polymode
+; (require 'polymode)
+(require 'poly-R)
+(eval-after-load 'ess-site 
+  '(progn 
+     (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))
+     (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
+
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (setq org-agenda-show-log t
