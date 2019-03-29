@@ -50,7 +50,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (dockerfile-mode docker terraform-mode yaml-mode writegood-mode web-mode solarized-theme smex rvm powerline marmalade markdown-mode magit htmlize haml-mode graphviz-dot-mode go-eldoc go-autocomplete flycheck feature-mode f ess autopair ac-slime)))
+    (wc-mode dockerfile-mode docker terraform-mode yaml-mode writegood-mode web-mode solarized-theme smex rvm powerline marmalade markdown-mode magit htmlize haml-mode graphviz-dot-mode go-eldoc go-autocomplete flycheck feature-mode f ess autopair ac-slime)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
