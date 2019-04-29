@@ -1,3 +1,4 @@
+
 ;; Modified from Aaron Bedra
 (setq user-full-name "Roy Emanuel")
 (setq user-mail-address "roy.emanuel@gmail.com")
@@ -24,15 +25,19 @@
 			  docker
 			  dockerfile-mode
 			  elpy
+			  ess
 			  f
 			  feature-mode
 			  flycheck
 			  graphviz-dot-mode
 			  htmlize
+			  julia-mode
 			  magit
 			  markdown-mode
 			  org
 			  paredit
+			  polymode
+			  poly-R
 			  powerline
 			  rvm
 			  smex
@@ -118,12 +123,12 @@
 	    (writegood-mode)))
 
 ;; Polymode
-; (require 'polymode)
-(require 'poly-R)
-(eval-after-load 'ess-site 
-  '(progn 
-     (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))
-     (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
+(require 'polymode)
+ (require 'poly-R)
+ (eval-after-load 'ess-site 
+   '(progn 
+      (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))
+    (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
 
 
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -251,8 +256,8 @@
 
 (setq flyspell-issue-welcome-flag nil)
 (if (eq system-type 'darwin)
-    (setq-default ispell-program-name "/usr/local/bin/aspell")
-  (setq-default ispell-program-name "/usr/bin/aspell"))
+    (setq-default ispell-program-name "c:/emacs26/hunspell/bin/hunspell")
+  (setq-default ispell-program-name "c:/emacs26/hunspell/bin/hunspell"))
 (setq-default ispell-list-command "list")
 
 (require 'f)
@@ -420,5 +425,5 @@
        (set-face-attribute 'show-paren-match nil
                            :background "#000000"))
 ; adding a change
-(define-key ess-r-mode-map "_" #'ess-insert-assign)
-(define-key inferior-ess-r-mode-map "_" #'ess-insert-assign)
+;; (define-key ess-r-mode-map "_" #'ess-insert-assign)
+;; (define-key inferior-ess-r-mode-map "_" #'ess-insert-assign)
