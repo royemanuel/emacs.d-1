@@ -1,6 +1,6 @@
-#+TITLE: Aaron Bedra's Emacs 26 Configuration
-#+AUTHOR: Aaron Bedra
-#+EMAIL: aaron@aaronbedra.com
+#+TITLE: Roy Emanuel's Emacs 26 Configuration
+#+AUTHOR: Roy Emanuel
+#+EMAIL: roy.emanuel@gmail.com
 #+OPTIONS: toc:3 num:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
 
@@ -17,8 +17,8 @@
    Emacs will normally pick this up automatically, but this way I can
    be sure the right information is always present.
    #+begin_src emacs-lisp
-     (setq user-full-name "Aaron Bedra")
-     (setq user-mail-address "aaron@aaronbedra.com")
+     (setq user-full-name "Roy Emanuel")
+     (setq user-mail-address "roy.emanuel@gmail.com")
    #+end_src
 
 ** Environment
@@ -547,7 +547,7 @@
 
 TODO: grumpy rant about the state of GPG email
 #+begin_src emacs-lisp
-  (setq user-email-address "aaron@aaronbedra.com"
+  (setq user-email-address "roy.emanuel@gmail.com"
 	gnus-select-method
 	'(nnimap "personal"
 		 (nnimap-address "imap.gmail.com")

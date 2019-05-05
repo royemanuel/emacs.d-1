@@ -94,7 +94,6 @@
 (global-unset-key (kbd "C-z"))        ; get rid of suspend-frame (still C-x C-z)
 (global-unset-key (kbd "s-^"))        ; get rid of kill-some-buffers, I
 
-
 (setq echo-keystrokes 0.1
       use-dialog-box nil
       visible-bell t)
@@ -424,3 +423,5 @@
        (set-face-attribute 'show-paren-match nil
                            :background "#000000"))
 ; adding a change
+(define-key ess-r-mode-map "_" #'ess-insert-assign)
+(define-key inferior-ess-r-mode-map "_" #'ess-insert-assign)
