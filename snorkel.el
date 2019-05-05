@@ -27,6 +27,7 @@
 			  elpy
 			  ess
 			  f
+			  fill-column-indicator
 			  feature-mode
 			  flycheck
 			  graphviz-dot-mode
@@ -127,8 +128,8 @@
  (require 'poly-R)
  (eval-after-load 'ess-site 
    '(progn 
-      (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))
-    (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
+      (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))))
+    ;; (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
 
 
 (global-set-key (kbd "C-c a") 'org-agenda)
