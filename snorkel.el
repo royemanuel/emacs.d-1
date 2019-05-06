@@ -27,6 +27,7 @@
 			  elpy
 			  ess
 			  f
+			  fill-column-indicator
 			  feature-mode
 			  flycheck
 			  graphviz-dot-mode
@@ -137,8 +138,8 @@
  (require 'poly-R)
  (eval-after-load 'ess-site 
    '(progn 
-      (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))
-    (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
+      (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))))
+    ;; (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
 
 
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -424,7 +425,7 @@
 (global-linum-mode t)
 
 ;;Make a column line
-(add-to-list 'load-path "~/.emacs.d/fill-column-indicator-1.83")
+;;(add-to-list 'load-path "~/.emacs.d/fill-column-indicator-1.83")
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda() (fci-mode 1)))
