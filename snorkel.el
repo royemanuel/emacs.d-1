@@ -96,6 +96,16 @@
 (global-unset-key (kbd "C-z"))        ; get rid of suspend-frame (still C-x C-z)
 (global-unset-key (kbd "s-^"))        ; get rid of kill-some-buffers, I
 
+;; make PC keyboard's Win key or other to type Super or Hyper, for emacs running on Windows.
+(setq w32-pass-lwindow-to-system nil)
+(setq w32-lwindow-modifier 'super) ; Left Windows key
+
+(setq w32-pass-rwindow-to-system nil)
+(setq w32-rwindow-modifier 'super) ; Right Windows key
+
+(setq w32-pass-apps-to-system nil)
+(setq w32-apps-modifier 'hyper) ; Menu/App key
+
 (setq echo-keystrokes 0.1
       use-dialog-box nil
       visible-bell t)
@@ -135,12 +145,13 @@
 (setq org-agenda-show-log t
       org-agenda-todo-ignore-scheduled t
       org-agenda-todo-ignore-deadlines t)
-(setq org-agenda-files (list "~/Dropbox/org/personal.org"))
+(setq org-agenda-files (list "c:/Users/emanurn1/Documents/"))
 
-(require 'org)
-(require 'org-install)
-(require 'org-habit)
-(add-to-list 'org-modules "org-habit")
+;; (require 'org)
+;; (require 'org-install)
+;; (require 'org-habit)
+;; (add-to-list 'org-modules "org-habit")
+(setq org-modules '(org-habit))
 (setq org-habit-preceding-days 7
       org-habit-following-days 1
       org-habit-graph-column 80
