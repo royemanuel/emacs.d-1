@@ -268,8 +268,8 @@
 
 (setq flyspell-issue-welcome-flag nil)
 (if (eq system-type 'darwin)
-    (setq-default ispell-program-name "c:/emacs26/hunspell/bin/hunspell")
-  (setq-default ispell-program-name "c:/emacs26/hunspell/bin/hunspell"))
+    (setq-default ispell-program-name "c:/emacs26/.emacs.d/hunspell/bin/hunspell")
+  (setq-default ispell-program-name "c:/emacs26/.emacs.d/hunspell/bin/hunspell"))
 (setq-default ispell-list-command "list")
 
 (require 'f)
