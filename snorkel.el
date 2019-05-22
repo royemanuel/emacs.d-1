@@ -44,7 +44,6 @@
 			  smex
 			  solarized-theme
 			  terraform-mode
-			  wc-mode
 			  wc-goal-mode
 			  web-mode
 			  writegood-mode
