@@ -1,23 +1,14 @@
-
-;; Modified from Aaron Bedra
-;; JHU/APL settings
 (setq user-full-name "Emanuel, Roy N.")
 (setq user-mail-address "roy.emanuel@jhuapl.edu")
 
 (setenv "PATH" (concat "/usr/local/bin:/opt/local/bin:/usr/bin:/bin" (getenv "PATH")))
-(setenv "WORKON_HOME" "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3/envs")
-(pyvenv-mode 1)
-(setenv "GIT_ASKPASS" "git-gui--askpass")
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (require 'cl)
 
 (load "package")
 (package-initialize)
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")))
-;; (add-to-list 'package-archives
-;; 	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+	     '("melpa" . "https://melpa.org/packages/") t)
 
 (defvar abedra/packages '(ac-slime
 			  auto-complete
@@ -26,24 +17,22 @@
 			  clojure-mode
 			  company-irony
 			  company-terraform
-			  conda
 			  docker
 			  dockerfile-mode
 			  elpy
 			  ess
 			  f
-			  fill-column-indicator
 			  feature-mode
 			  flycheck
 			  graphviz-dot-mode
 			  htmlize
-			  julia-mode
 			  magit
 			  markdown-mode
 			  org
 			  paredit
 			  polymode
 			  poly-R
+			  poly-markdown
 			  powerline
 			  rvm
 			  smex
@@ -78,8 +67,7 @@
 (delete-selection-mode t)
 (transient-mark-mode t)
 (setq x-select-enable-clipboard t)
-;; (setq inferior-ess-help-command "utils::help(\"%s\")\n")
-(setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
+
 (setq-default indicate-empty-lines t)
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines))
@@ -98,21 +86,7 @@
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-c C-k") 'compile)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "M-g")     'goto-line)
-;; Remove
-(global-unset-key [insert])           ; get rid of overwrite
-(global-unset-key (kbd "C-z"))        ; get rid of suspend-frame (still C-x C-z)
-(global-unset-key (kbd "s-^"))        ; get rid of kill-some-buffers, I
-
-;; make PC keyboard's Win key or other to type Super or Hyper, for emacs running on Windows.
-(setq w32-pass-lwindow-to-system nil)
-(setq w32-lwindow-modifier 'super) ; Left Windows key
-
-(setq w32-pass-rwindow-to-system nil)
-(setq w32-rwindow-modifier 'super) ; Right Windows key
-
-(setq w32-pass-apps-to-system nil)
-(setq w32-apps-modifier 'hyper) ; Menu/App key
+(global-set-key (kbd "C-z") nil)
 
 (setq echo-keystrokes 0.1
       use-dialog-box nil
@@ -126,10 +100,6 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-
-(add-to-list 'load-path "c:/emacs26/.emacs.d/elpa/julia-emacs")
-(require 'julia-mode)
-
 (setq org-log-done t
       org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE"))
       org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
@@ -140,26 +110,16 @@
 	  (lambda ()
 	    (writegood-mode)))
 
-;; Polymode
-(require 'polymode)
- (require 'poly-R)
- (eval-after-load 'ess-site 
-   '(progn 
-      (add-to-list 'auto-mode-alist '("\\.[rR]md" . poly-markdown+r-mode))))
-    ;; (add-to-list 'auto-mode-alist '("\\.[rR]nw" . poly-noweb+r-mode))))
-
-
 (global-set-key (kbd "C-c a") 'org-agenda)
 (setq org-agenda-show-log t
       org-agenda-todo-ignore-scheduled t
       org-agenda-todo-ignore-deadlines t)
-(setq org-agenda-files (list "c:/Users/emanurn1/Documents/"))
+(setq org-agenda-files (list "~/Dropbox/org/personal.org"))
 
-;; (require 'org)
-;; (require 'org-install)
-;; (require 'org-habit)
-;; (add-to-list 'org-modules "org-habit")
-(setq org-modules '(org-habit))
+(require 'org)
+(require 'org-install)
+(require 'org-habit)
+(add-to-list 'org-modules "org-habit")
 (setq org-habit-preceding-days 7
       org-habit-following-days 1
       org-habit-graph-column 80
@@ -220,12 +180,6 @@
 
 (require 'autopair)
 
-;; (use-package conda
-;;              :ensure t
-;;              :init
-;;              (setq conda-anaconda-home (expand-file-name "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3"))
-;;              (setq conda-env-home-directory (expand-file-name "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3")))
-
 (setq lisp-modes '(lisp-mode
                    emacs-lisp-mode
                    common-lisp-mode
@@ -281,8 +235,8 @@
 
 (setq flyspell-issue-welcome-flag nil)
 (if (eq system-type 'darwin)
-    (setq-default ispell-program-name "c:/emacs26/.emacs.d/hunspell/bin/hunspell")
-  (setq-default ispell-program-name "c:/emacs26/.emacs.d/hunspell/bin/hunspell"))
+    (setq-default ispell-program-name "/usr/local/bin/aspell")
+  (setq-default ispell-program-name "/usr/bin/aspell"))
 (setq-default ispell-list-command "list")
 
 (require 'f)
@@ -323,7 +277,7 @@
 (require 'powerline)
 (powerline-default-theme)
 
-(setq user-email-address "aaron@aaronbedra.com"
+(setq user-email-address "roy.emanuel@gmail.com"
       gnus-select-method
       '(nnimap "personal"
 	       (nnimap-address "imap.gmail.com")
@@ -372,17 +326,6 @@
 	    (auto-complete-mode)))
 
 (elpy-enable)
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-(custom-set-variables
- '(conda-anaconda-hom "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3"))
-;; (setq python-shell-interpreter "ipython"
-;;   python-shell-interpreter-interactive-args "-i --simple-prompt")
-;; (defun ipython ()
-;;   (interactive)
-;;   (ansi-term "/opt/anaconda/bin/ipython"))
-
-;; (global-set-key (kbd "C-c I") 'ipython)
 
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 
@@ -432,37 +375,14 @@
 
 (load-theme 'wombat t)
 (when window-system
-  (set-default-font "Ubuntu Mono-10")
-  ;(set-face-attribute 'default nil :height 160)
-  (require 'ansi-color)
-  (defun colorize-compilation-buffer ()
-    (toggle-read-only)
-    (ansi-color-apply-on-region (point-min) (point-max))
-    (toggle-read-only)))
+  (set-default-font "Ubuntu mono")
+  (set-face-attribute 'default nil :height 100))
+
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-;; Turn on auto-matic assignment operator in ESS ->
-(define-key ess-r-mode-map "_" #'ess-insert-assign)
-(define-key inferior-ess-r-mode-map "_" #'ess-insert-assign) 
 (setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
-;; Change the cursor
-(setq-default cursor-type 'bar)
-
-;; Show line numbers
-(global-linum-mode t)
-
-;;Make a column line
-;;(add-to-list 'load-path "~/.emacs.d/fill-column-indicator-1.83")
-(require 'fill-column-indicator)
-(define-globalized-minor-mode
-  global-fci-mode fci-mode (lambda() (fci-mode 1)))
-(global-fci-mode t)
-
-;Highlight the stuff inside a set of brackets
-(progn (show-paren-mode 1)
-       (setq show-paren-style 'expression)
-       (set-face-attribute 'show-paren-match nil
-                           :background "#000000"))
-; adding a change
-(define-key ess-r-mode-map "_" #'ess-insert-assign)
-(define-key inferior-ess-r-mode-map "_" #'ess-insert-assign)
