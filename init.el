@@ -17,7 +17,7 @@
  '(ansi-color-names-vector
    ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#657b83"])
  '(compilation-message-face (quote default))
- '(conda-anaconda-hom "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3")
+ '(conda-anaconda-home "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3")
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
