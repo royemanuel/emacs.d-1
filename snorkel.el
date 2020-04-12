@@ -10,22 +10,25 @@
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/") t)
 
-(defvar abedra/packages '(ac-slime
+(defvar snorkel/packages '(ac-slime
 			  auto-complete
 			  autopair
 			  cider
 			  clojure-mode
 			  company-irony
 			  company-terraform
+			  conda
 			  docker
 			  dockerfile-mode
 			  elpy
 			  ess
 			  f
+			  fill-column-indicator
 			  feature-mode
 			  flycheck
 			  graphviz-dot-mode
 			  htmlize
+			  julia-mode
 			  magit
 			  markdown-mode
 			  org
@@ -44,15 +47,15 @@
 			  yaml-mode)
   "Default packages")
 
-(defun abedra/packages-installed-p ()
-  (loop for pkg in abedra/packages
+(defun snorkel/packages-installed-p ()
+  (loop for pkg in snorkel/packages
         when (not (package-installed-p pkg)) do (return nil)
         finally (return t)))
 
-(unless (abedra/packages-installed-p)
+(unless (snorkel/packages-installed-p)
   (message "%s" "Refreshing package database...")
   (package-refresh-contents)
-  (dolist (pkg abedra/packages)
+  (dolist (pkg snorkel/packages)
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
@@ -86,17 +89,26 @@
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-c C-k") 'compile)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-z") nil)
+(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "M-g") 'goto-line)
+(setq w32-pass-lwindow-to-system nil)
+(setq w32-lwindow-modifier 'super) ; Left Windows key
+
+(setq w32-pass-rwindow-to-system nil)
+(setq w32-rwindow-modifier 'super) ; Right Windows key
+
+(setq w32-pass-apps-to-system nil)
+(setq w32-apps-modifier 'hyper) ; Menu/App key
 
 (setq echo-keystrokes 0.1
       use-dialog-box nil
       visible-bell t)
 (show-paren-mode t)
 
-(defvar abedra/vendor-dir (expand-file-name "vendor" user-emacs-directory))
-(add-to-list 'load-path abedra/vendor-dir)
+(defvar snorkel/vendor-dir (expand-file-name "vendor" user-emacs-directory))
+(add-to-list 'load-path snorkel/vendor-dir)
 
-(dolist (project (directory-files abedra/vendor-dir t "\\w+"))
+(dolist (project (directory-files snorkel/vendor-dir t "\\w+"))
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
@@ -194,12 +206,12 @@
 (define-key lisp-power-map [delete] 'paredit-forward-delete)
 (define-key lisp-power-map [backspace] 'paredit-backward-delete)
 
-(defun abedra/engage-lisp-power ()
+(defun snorkel/engage-lisp-power ()
   (lisp-power-mode t))
 
 (dolist (mode lisp-modes)
   (add-hook (intern (format "%s-hook" mode))
-            #'abedra/engage-lisp-power))
+            #'snorkel/engage-lisp-power))
 
 (setq inferior-lisp-program "clisp")
 (setq scheme-program-name "racket")
@@ -235,8 +247,8 @@
 
 (setq flyspell-issue-welcome-flag nil)
 (if (eq system-type 'darwin)
-    (setq-default ispell-program-name "/usr/local/bin/aspell")
-  (setq-default ispell-program-name "/usr/bin/aspell"))
+    (setq-default ispell-program-name "c:/emacs26/.emacs.d/hunspell/bin/hunspell")
+  (setq-default ispell-program-name "c:/emacs26/.emacs.d/hunspell/bin/hunspell"))
 (setq-default ispell-list-command "list")
 
 (require 'f)
@@ -371,7 +383,7 @@
             (writegood-mode t)
             (flyspell-mode t)))
 (setq markdown-command "pandoc --smart -f markdown -t html")
-(setq markdown-css-paths `(,(expand-file-name "markdown.css" abedra/vendor-dir)))
+(setq markdown-css-paths `(,(expand-file-name "markdown.css" snorkel/vendor-dir)))
 
 (load-theme 'wombat t)
 (when window-system
