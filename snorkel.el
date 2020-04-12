@@ -1,9 +1,13 @@
 
 ;; Modified from Aaron Bedra
-(setq user-full-name "Roy Emanuel")
-(setq user-mail-address "roy.emanuel@gmail.com")
+;; JHU/APL settings
+(setq user-full-name "Emanuel, Roy N.")
+(setq user-mail-address "roy.emanuel@jhuapl.edu")
 
 (setenv "PATH" (concat "/usr/local/bin:/opt/local/bin:/usr/bin:/bin" (getenv "PATH")))
+(setenv "WORKON_HOME" "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3/envs")
+(pyvenv-mode 1)
+(setenv "GIT_ASKPASS" "git-gui--askpass")
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (require 'cl)
 
@@ -22,6 +26,7 @@
 			  clojure-mode
 			  company-irony
 			  company-terraform
+			  conda
 			  docker
 			  dockerfile-mode
 			  elpy
@@ -73,7 +78,8 @@
 (delete-selection-mode t)
 (transient-mark-mode t)
 (setq x-select-enable-clipboard t)
-
+;; (setq inferior-ess-help-command "utils::help(\"%s\")\n")
+(setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
 (setq-default indicate-empty-lines t)
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines))
@@ -213,6 +219,12 @@
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 (require 'autopair)
+
+;; (use-package conda
+;;              :ensure t
+;;              :init
+;;              (setq conda-anaconda-home (expand-file-name "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3"))
+;;              (setq conda-env-home-directory (expand-file-name "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3")))
 
 (setq lisp-modes '(lisp-mode
                    emacs-lisp-mode
@@ -360,6 +372,17 @@
 	    (auto-complete-mode)))
 
 (elpy-enable)
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+(custom-set-variables
+ '(conda-anaconda-hom "c:/Users/emanurn1/AppData/Local/Continuum/anaconda3"))
+;; (setq python-shell-interpreter "ipython"
+;;   python-shell-interpreter-interactive-args "-i --simple-prompt")
+;; (defun ipython ()
+;;   (interactive)
+;;   (ansi-term "/opt/anaconda/bin/ipython"))
+
+;; (global-set-key (kbd "C-c I") 'ipython)
 
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 
@@ -438,5 +461,5 @@
        (set-face-attribute 'show-paren-match nil
                            :background "#000000"))
 ; adding a change
-;; (define-key ess-r-mode-map "_" #'ess-insert-assign)
-;; (define-key inferior-ess-r-mode-map "_" #'ess-insert-assign)
+(define-key ess-r-mode-map "_" #'ess-insert-assign)
+(define-key inferior-ess-r-mode-map "_" #'ess-insert-assign)

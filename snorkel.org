@@ -1,6 +1,6 @@
-#+TITLE: Roy Emanuel's Emacs 26 Configuration
-#+AUTHOR: Roy Emanuel
-#+EMAIL: roy.emanuel@gmail.com
+#+TITLE: Roy Emanuel's Emacs 26 Configuration JHU/APL
+#+AUTHOR: Emanuel, Roy N.
+#+EMAIL: roy.emanuel@jhuapl.edu
 #+OPTIONS: toc:3 num:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
 
@@ -17,8 +17,8 @@
    Emacs will normally pick this up automatically, but this way I can
    be sure the right information is always present.
    #+begin_src emacs-lisp
-     (setq user-full-name "Roy Emanuel")
-     (setq user-mail-address "roy.emanuel@gmail.com")
+     (setq user-full-name "Emanuel, Roy N.")
+     (setq user-mail-address "roy.emanuel@jhuapl.edu")
    #+end_src
 
 ** Environment
@@ -726,4 +726,13 @@ TODO: grumpy rant about the state of GPG email
         (ansi-color-apply-on-region (point-min) (point-max))
         (toggle-read-only))
       (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+#+end_src
+*** ESS
+Tweaks to make Emacs Speaks Statistics work how I want it to. Let's see if it works 
+:PROPERTIES:
+:CUSTOM_ID: ESS
+:END:
+
+#+begin_src emacs-lisp
+  (setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
 #+end_src
