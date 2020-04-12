@@ -434,7 +434,6 @@
 (when window-system
   (set-default-font "Ubuntu Mono-10")
   ;(set-face-attribute 'default nil :height 160)
-
   (require 'ansi-color)
   (defun colorize-compilation-buffer ()
     (toggle-read-only)
@@ -442,6 +441,10 @@
     (toggle-read-only)))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+;; Turn on auto-matic assignment operator in ESS ->
+(define-key ess-r-mode-map "_" #'ess-insert-assign)
+(define-key inferior-ess-r-mode-map "_" #'ess-insert-assign) 
+(setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
 ;; Change the cursor
 (setq-default cursor-type 'bar)
 

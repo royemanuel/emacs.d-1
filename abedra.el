@@ -30,6 +30,9 @@
 			  graphviz-dot-mode
 			  htmlize
 			  magit
+			  julia-mode
+			  poly-R
+			  ess
 			  markdown-mode
 			  org
 			  paredit
