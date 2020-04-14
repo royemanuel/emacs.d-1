@@ -423,6 +423,11 @@
     #+begin_src emacs-lisp
       (setq column-number-mode t)
     #+end_src
+*** Line number mode
+    Turn on line numbers
+    #+begin_src emacs-lisp
+      (global-display-line-numbers-mode)
+    #+end_src
 *** Temporary file management
     Deal with temporary files. I don't care about them and this makes
     them go away.
@@ -753,4 +758,5 @@ Tweaks to make Emacs Speaks Statistics work how I want it to. Let's see if it wo
 
 #+begin_src emacs-lisp
   (setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
+
 #+end_src
