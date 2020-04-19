@@ -727,6 +727,8 @@ TODO: grumpy rant about the state of GPG email
                   (flyspell-mode t)))
       (setq markdown-command "pandoc --smart -f markdown -t html")
       (setq markdown-css-paths `(,(expand-file-name "markdown.css" snorkel/vendor-dir)))
+      (add-hook 'markdown-mode-hook 'auto-fill-mode)
+      (add-hook 'markdown-mode-hook 'wc-goal-mode)
     #+end_src
 *** Themes
     Load solarized-light if in a graphical environment. Load the
