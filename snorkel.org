@@ -758,5 +758,21 @@ Tweaks to make Emacs Speaks Statistics work how I want it to. Let's see if it wo
 
 #+begin_src emacs-lisp
   (setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
+  (setq ess-R-font-lock-keywords
+    '((ess-R-fl-keyword:modifiers . t)
+     (ess-R-fl-keyword:fun-defs . t)
+     (ess-R-fl-keyword:keywords . t)
+     (ess-R-fl-keyword:assign-ops . t)
+     (ess-R-fl-keyword:constants . t)
+     (ess-fl-keyword:fun-calls . t)
+     (ess-fl-keyword:numbers . t)
+     (ess-fl-keyword:operators . t)
+     (ess-fl-keyword:delimiters . t)
+     (ess-fl-keyword:=)
+     (ess-R-fl-keyword:F&T)
+     (ess-R-fl-keyword:%op% . t)))
+  (add-hook 'ess-mode-hook 'turn-on-pretty-mode)
+  ;; (require 'ess-jags-mode)
+  ;; (add-to-list 'auto-mode-alist '("\\.jags\\'" . ess-jags-mode))
 
 #+end_src
