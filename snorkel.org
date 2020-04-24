@@ -773,7 +773,6 @@ Tweaks to make Emacs Speaks Statistics work how I want it to. Let's see if it wo
      (ess-fl-keyword:=)
      (ess-R-fl-keyword:F&T)
      (ess-R-fl-keyword:%op% . t)))
-  (add-hook 'ess-mode-hook 'turn-on-pretty-mode)
   ;; (require 'ess-jags-mode)
   ;; (add-to-list 'auto-mode-alist '("\\.jags\\'" . ess-jags-mode))
 
