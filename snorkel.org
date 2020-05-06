@@ -93,6 +93,11 @@
 				powerline
 				rvm
 				smex
+				stan-mode
+				company-stan
+				eldoc-stan
+				flycheck-stan
+				stan-snippets
 				solarized-theme
 				terraform-mode
 				wc-goal-mode
