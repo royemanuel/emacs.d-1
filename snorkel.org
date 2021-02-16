@@ -38,6 +38,8 @@
    #+begin_src emacs-lisp
      (setenv "PATH" (concat "/usr/local/bin:/opt/local/bin:/usr/bin:/bin" (getenv "PATH")))
      (setq exec-path (append exec-path '("/usr/local/bin")))
+     ;; (add-to-list 'exec-path "c:/Users/Roy/anaconda3/bin")
+     ;; (setenv "PATH" "c:/Users/Roy/anadonda3/bin:$PATH" '("PATH"))
      (require 'cl)
    #+end_src
 ** Package Management
@@ -64,7 +66,8 @@
 
     This is the list of packages used in this configuration.
     #+begin_src emacs-lisp
-      (defvar snorkel/packages '(ac-slime
+      (defvar snorkel/packages '(ac-slime 
+                                anaconda-mode
 				auto-complete
 				autopair
 				cider
@@ -654,6 +657,11 @@ TODO: grumpy rant about the state of GPG email
 
 #+begin_src emacs-lisp
   (elpy-enable)
+(add-hook 'python-mode-hook 'anaconda-mode)
+;;(setenv "WORKON_HOME" "c:/Users/Roy/anaconda3/envs")
+(pyvenv-mode 1)
+;;(setq conda-anaconda-home (expand-file-name "c:/Users/Roy/anaconda3"))
+;;(setq conda-env-home-directory (expand-file-name "c:/Users/Roy/anaconda3"))
 #+end_src
 *** shell-script-mode
     :PROPERTIES:
