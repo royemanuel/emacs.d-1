@@ -39,6 +39,11 @@
 			  powerline
 			  rvm
 			  smex
+			  stan-mode
+			  company-stan
+			  eldoc-stan
+			  flycheck-stan
+			  stan-snippets
 			  solarized-theme
 			  terraform-mode
 			  wc-goal-mode
@@ -186,6 +191,8 @@
       ido-use-virtual-buffers t)
 
 (setq column-number-mode t)
+
+(global-linum-mode)
 
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
@@ -384,6 +391,8 @@
             (flyspell-mode t)))
 (setq markdown-command "pandoc --smart -f markdown -t html")
 (setq markdown-css-paths `(,(expand-file-name "markdown.css" snorkel/vendor-dir)))
+(add-hook 'markdown-mode-hook 'auto-fill-mode)
+(add-hook 'markdown-mode-hook 'wc-goal-mode)
 
 (load-theme 'wombat t)
 (when window-system
@@ -398,3 +407,18 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 (setq inferior-ess-r-help-command "help(\"%s\", help_type=\"text\")\n")
+(setq ess-R-font-lock-keywords
+  '((ess-R-fl-keyword:modifiers . t)
+   (ess-R-fl-keyword:fun-defs . t)
+   (ess-R-fl-keyword:keywords . t)
+   (ess-R-fl-keyword:assign-ops . t)
+   (ess-R-fl-keyword:constants . t)
+   (ess-fl-keyword:fun-calls . t)
+   (ess-fl-keyword:numbers . t)
+   (ess-fl-keyword:operators . t)
+   (ess-fl-keyword:delimiters . t)
+   (ess-fl-keyword:=)
+   (ess-R-fl-keyword:F&T)
+   (ess-R-fl-keyword:%op% . t)))
+;; (require 'ess-jags-mode)
+;; (add-to-list 'auto-mode-alist '("\\.jags\\'" . ess-jags-mode))

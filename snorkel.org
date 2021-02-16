@@ -431,7 +431,7 @@
 *** Line number mode
     Turn on line numbers
     #+begin_src emacs-lisp
-      (global-display-line-numbers-mode)
+      (global-linum-mode)
     #+end_src
 *** Temporary file management
     Deal with temporary files. I don't care about them and this makes
